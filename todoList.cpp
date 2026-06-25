@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 int main(){
 
@@ -15,6 +16,7 @@ int main(){
         std::cout << "View    " << "Add    " << "Remove    " << "Exit    " << '\n';
         std::cin >> action;
 
+
         if(action == "add"){
             std::cout << "Name of task: ";
             std::string taskName = "";
@@ -29,8 +31,7 @@ int main(){
 
 
         else if(action == "view"){
-
-            if(taskList.empty() == 1){
+            if(taskList.empty()){
                 std::cout << "No tasks" << '\n';
             }
             else{
@@ -38,9 +39,29 @@ int main(){
                     std::cout << "[] " << taskList[i] << '\n';
                 }
             }
+        }
+
+
+        else if(action == "remove"){
+            std::cout << "Which task would you like to remove?" << '\n';
+            std::string removeName = "";
+            std::cin >> removeName;
+
+            if(removeName != ""){
+                bool found = false;
+                for(int i = 0; i < taskList.size(); i++){
+                    if(removeName == taskList[i]){
+                        taskList.erase(taskList.begin() + i);
+                        found = true;
+                    }   
+                
+                }
+                if (found == false){
+                        std::cout << "No task named: " << removeName << '\n';
+                } 
+            }   
 
         }
 
-    }
-
-}   
+    }   
+}
